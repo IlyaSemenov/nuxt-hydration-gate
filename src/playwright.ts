@@ -8,8 +8,7 @@ import {
   type PlaywrightWorkerOptions,
   type TestType,
 } from "@playwright/test"
-
-import { hydrationGateAttribute } from "./runtime/config"
+import { hydrationGateAttribute } from "nuxt-hydration-gate/runtime"
 
 /** Options for {@link waitForHydration}. */
 export interface WaitForHydrationOptions {
