@@ -2,7 +2,7 @@
 
 ## Overview
 
-Mark Nuxt app hydration with the `data-app-hydrated` attribute on `<html>` as a general-purpose signal.
+Nuxt hydration marker: the `data-app-hydrated` attribute on `<html>`, a general-purpose signal for CSS, scripts, and E2E tests.
 The Playwright entry is one optional integration built on it.
 
 Read [README.md](README.md) completely before changing the public API, package behavior, supported runtimes, or user documentation.

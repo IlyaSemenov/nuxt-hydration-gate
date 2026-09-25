@@ -1,7 +1,7 @@
 {
   "name": "nuxt-hydration-gate",
   "version": "0.1.0",
-  "description": "Mark Nuxt app hydration with a DOM attribute for CSS, scripts, and end-to-end tests.",
+  "description": "Nuxt hydration marker for CSS, scripts, and E2E tests.",
   "keywords": [
     "hydration",
     "nuxt",
