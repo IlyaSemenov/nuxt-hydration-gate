@@ -1,0 +1,1 @@
+export { hydrationGateAttribute } from "./config"

@@ -1,0 +1,10 @@
+**/node_modules/
+**/.nuxt/
+**/.nuxt-spa/
+**/.nuxtrc
+**/.output/
+**/.output-spa/
+
+**/dist
+/test-results/
+/playwright-report/
