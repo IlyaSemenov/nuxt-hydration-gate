@@ -18,26 +18,6 @@ The optional [Playwright integration](#playwright) holds test actions until the 
 
 See [Background](#background) for related issues and alternatives.
 
-## Marker
-
-After the root app is mounted, `<html>` gets the `data-app-hydrated` attribute.
-
-- Server-rendered HTML never contains the attribute.
-- A client plugin sets it in the `app:mounted` hook.
-- The attribute stays until the page is reloaded; client-side navigation does not touch it.
-- With `ssr: false`, the attribute is set the same way, after mount.
-- The Nuxt error page gets the attribute too, including when a client plugin throws and Nuxt shows the error page instead of the route.
-- If the client app never mounts, for example because its entry chunk fails to load, the attribute never appears.
-
-The marker does not promise that lazy or async components, delayed hydration (`hydrate-on-*`), or code-split chunks mounted later are ready.
-`app:mounted` is a root app lifecycle signal; [Nuxt #34652][nuxt-34652] discusses the same limitation.
-
-For code that needs the attribute name programmatically:
-
-```ts
-import { hydrationGateAttribute } from "nuxt-hydration-gate/runtime" // "data-app-hydrated"
-```
-
 ## Install
 
 ```sh
@@ -53,6 +33,8 @@ export default defineNuxtConfig({
 
 The module has no options.
 It registers only the client plugin, without CSS, components, auto-imports, or runtime config.
+
+After the root app mounts, `<html>` gets the `data-app-hydrated` attribute; see [Marker](#marker) for the exact guarantees.
 
 ## Blocking interaction
 
@@ -119,6 +101,26 @@ The fixture does not intercept:
 - navigation such as `page.goto()`
 
 Call `waitForHydration(page)` before them when they must run after hydration.
+
+## Marker
+
+After the root app is mounted, `<html>` gets the `data-app-hydrated` attribute.
+
+- Server-rendered HTML never contains the attribute.
+- A client plugin sets it in the `app:mounted` hook.
+- The attribute stays until the page is reloaded; client-side navigation does not touch it.
+- With `ssr: false`, the attribute is set the same way, after mount.
+- The Nuxt error page gets the attribute too, including when a client plugin throws and Nuxt shows the error page instead of the route.
+- If the client app never mounts, for example because its entry chunk fails to load, the attribute never appears.
+
+The marker does not promise that lazy or async components, delayed hydration (`hydrate-on-*`), or code-split chunks mounted later are ready.
+`app:mounted` is a root app lifecycle signal; [Nuxt #34652][nuxt-34652] discusses the same limitation.
+
+For code that needs the attribute name programmatically:
+
+```ts
+import { hydrationGateAttribute } from "nuxt-hydration-gate/runtime" // "data-app-hydrated"
+```
 
 ## Background
 
